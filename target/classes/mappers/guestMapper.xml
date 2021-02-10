@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.cjs2008.dao.GuestDao">
+
+	<insert id="gInput">
+		insert into guest2 values (default,#{vo.name},#{vo.email},#{vo.homepage},default,#{vo.hostip},#{vo.content});
+	</insert>
+	
+	<select id="getGuestList" resultType="com.spring.cjs2008.vo.GuestVo">
+		select * from guest2 order by idx desc limit #{startNo}, #{pageSize};
+	</select>
+	
+	<update id="gUpdate">
+		update guest2 set email=#{vo.email},homepage=#{vo.homepage},hostip=#{vo.hostip},content=#{vo.content} where idx=#{vo.idx};
+	</update>
+	
+	<delete id="gDelete">
+		delete from guest2 where idx=#{idx};
+	</delete>
+	
+	<select id="getUpdate" resultType="com.spring.cjs2008.vo.GuestVo">
+	  select * from guest2 where idx = #{idx};
+	</select>
+	
+	<select id="totRecCnt" resultType="int">
+	  select count(idx) from guest2;
+	</select>
+</mapper>

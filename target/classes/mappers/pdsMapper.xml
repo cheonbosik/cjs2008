@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.cjs2008.dao.PdsDao">
+  <select id="totRecCnt" resultType="int">
+    <if test="partValue == '전체'">
+	    select count(*) from pds2;
+    </if>
+    <if test="partValue != '전체'">
+	    select count(*) from pds2 where part = #{partValue};
+    </if>
+  </select>
+  
+  <select id="getPList" resultType="com.spring.cjs2008.vo.PdsVo">
+    <if test="part == '전체'">
+    	select * from pds2 order by idx desc limit #{startNo},#{pageSize};
+    </if>
+    <if test="part != '전체'">
+    	select * from pds2 where part = #{part} order by idx desc limit #{startNo},#{pageSize};
+    </if>
+  </select>
+  
+  <insert id="setPdsUpload">
+    insert into pds2 values (default,#{vo.mid},#{vo.nickname},#{vo.fname},#{vo.rfname},#{vo.title},#{vo.part},#{vo.pwd},default,#{vo.fsize},0,#{vo.opensw},#{vo.content});
+  </insert>
+</mapper>

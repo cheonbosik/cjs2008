@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.cjs2008.dao.AdminDao">
+  <select id="totMemberRecCnt" resultType="int">
+	  select count(*) from member2;  
+  </select>
+  
+  <select id="mList" resultType="com.spring.cjs2008.vo.MemberVo">
+    select * from member2 order by idx desc limit #{startNo}, #{pageSize};
+  </select>
+
+  <update id="levelCheck">
+    update member2 set level = #{level} where mid = #{mid};
+  </update>
+  
+  <select id="mSearchList" resultType="com.spring.cjs2008.vo.MemberVo">
+    select * from member2 where mid = #{mid};
+  </select>
+  
+  <delete id="memberDelete">
+    delete from member2 where idx = #{idx};
+  </delete>
+  
+</mapper>

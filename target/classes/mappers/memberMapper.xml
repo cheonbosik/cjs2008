@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.cjs2008.dao.MemberDao">
+  <insert id="mInput">
+    insert into member2 values (default,#{vo.mid},#{vo.pwd},#{vo.name},#{vo.nickname},#{vo.gender},#{vo.birthday},#{vo.tel},#{vo.email},#{vo.homepage},#{vo.address},#{vo.job},#{vo.hobby},default,#{vo.photo},#{vo.content},default,default,#{vo.userInfor},default);
+  </insert>
+  
+  <select id="getIdCheck" resultType="com.spring.cjs2008.vo.MemberVo">
+    select * from member2 where mid = #{mid};
+  </select>
+  
+  <select id="getNickCheck" resultType="com.spring.cjs2008.vo.MemberVo">
+    select * from member2 where nickname = #{nickname};
+  </select>
+  
+  <select id="getPwdSearch" resultType="com.spring.cjs2008.vo.MemberVo">
+    select * from member2 where mid = #{mid} and email = #{email};
+  </select>
+  
+  <update id="setPwdChange">
+    update member2 set pwd = #{pwd} where mid = #{mid};
+  </update>
+  
+  <select id="getMidSearch" resultType="com.spring.cjs2008.vo.MemberVo">
+    select * from member2 where name = #{name} and email = #{email};
+  </select>
+  
+  <update id="mUpdate">
+    update member2 set pwd=#{vo.pwd},name=#{vo.name},nickname=#{vo.nickname},gender=#{vo.gender},birthday=#{vo.birthday},tel=#{vo.tel},email=#{vo.email},homepage=#{vo.homepage},address=#{vo.address},job=#{vo.job},hobby=#{vo.hobby},photo=#{vo.photo},content=#{vo.content},userInfor=#{vo.userInfor},userDel=#{vo.userDel} where idx=#{vo.idx};
+  </update>
+  
+  <update id="memberDelete">
+    update member2 set userDel = 'OK' where mid = #{mid};
+  </update>
+</mapper>
